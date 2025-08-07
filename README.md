@@ -80,4 +80,35 @@
 		fixed_value = (int)(float_value * (1 << 8))
 			или
 		fixed_value = (int)(float_value * 256)
-		
+	Пример:
+		float value = 42.42f;
+		int fixed = (int)(42.42f * 256) = (int)(10859.52) = 10859
+	Зачем roundf()?
+		Без округления, обрезает дробную часть:
+			int fixed = (int)(42.42f * 256);
+		С округлением (более точно), округляет к ближайшему:
+			int fixed = (int)roundf(42.42f * 256);
+
+ПРЕОБРАЗОВАНИЕ INT -> FIXED-POINT
+	Формула:
+		fixed_value = int_value << 8
+			или
+		fixed_value = int_value * 256
+	Пример:
+		int value = 10;
+		int fixed = 10 << 8 = 10 * 256 = 2560
+
+ПРЕОБРАЗОВАНИЕ FIXED-POINT -> FLOAT
+	Формула:
+		fixed_value = (float)fixed_value / (1 << 8)
+			или
+		fixed_value = (float)fixed_value / 256.0f
+	Пример:
+		int fixed = 10859; 								(Было 42.42)
+		float value = (float)10859 / 256.0f = 42.418f	(Примерно 42.42)
+
+ПРЕОБРАЗОВАНИЕ FIXED-POINT -> INT
+	Формула:
+		int_value = fixed_value << 8
+			или
+		int_value = fixed_value / 256
