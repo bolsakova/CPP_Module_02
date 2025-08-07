@@ -6,32 +6,22 @@
 #include <cmath>
 
 class Fixed {
-private:
-	// целое число для хранения
-	int _fixedPointValue;
-	// всегда 8 бит под дробную часть
-	static const int _fractionalBits = 8;
-public:
-	// Default constructor - инициализирует значение в 0
-	Fixed();
-	// Copy constructor - копирует объект (обязательно константная ссылка)
-	//		const - мы не изменяем исходный объект
-	//		& - избегаем лишнего копирования (передача по ссылке)
-	Fixed(const Fixed& other);
-	// Assignment operator - присваивание
-	//		- копирует данные из одного уже существующего объекта в другой уже существующий
-	//		- вызывается при c = b; (когда с уже создан)
-	//		Fixed& - возвращаем ссылку на текущий объект (для цепочек a=b=c)
-	//		operator= - ключевое слово для перегрузки оператора присваивания
-	Fixed& operator=(const Fixed& other);
-	// Destructor - уничтожает объект, освобождает ресурсы (память, сокеты, файлы и т.д.)
-	~Fixed();
-	// геттер - возвращает "сырое" внутренне представление
-	//		возвращает 384 в двоичном виде (не 1.5)
-	int getRawBits(void) const;
-	// сеттер - устанавливает "сырое" внутреннее представление
-	//		сохраняет 384 в двоичном виде (не 1.5)
-	void setRawBits(int const raw);
+
+	private:
+			int _fixedPointValue;					// целое число для хранения
+			static const int _fractionalBits = 8;	// всегда 8 бит под дробную часть
+
+	public:
+			
+			Fixed();								// Default constructor - initialized value with 0
+			Fixed(int const _intValue);				// Constructor with parameter (int) - converts a constant integer to the corresponding fixed-point value
+			Fixed(float const _floatValue);			// Constructor with parameter (float) - converts a constant floating-point number to the corresponding fixed-point value
+			Fixed(const Fixed& other);				// Copy constructor - copy the object (always constant reference)
+			Fixed&	operator=(const Fixed& other);	// Assignment operator - assigning (1) copy the data from one already existing object to another one (2) is called when c = b; (с is already created)
+			~Fixed();								// Destructor - destroys the object, frees resources (memory, sockets, files etc.)
+			
+			float	toFloat( void ) const;			// member function converts the fixed-point value to a floating-point value
+			int		toInt( void ) const;			// member function converts the fixed-point value to an int value
 };
 
 #endif

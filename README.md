@@ -91,7 +91,7 @@
 
 ПРЕОБРАЗОВАНИЕ INT -> FIXED-POINT
 	Формула:
-		fixed_value = int_value << 8
+		fixed_value = int_value << 8 (дробная часть всегда занимает младшие 8 бит)
 			или
 		fixed_value = int_value * 256
 	Пример:

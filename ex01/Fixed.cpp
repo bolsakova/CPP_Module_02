@@ -1,9 +1,19 @@
 #include "Fixed.hpp"
 
-// создаем объект сразу со значением 0
 Fixed::Fixed() : _fixedPointValue(0) {
 	std::cout << "Default constructor called" << std::endl;
 };
+
+Fixed::Fixed(int const _intValue) {
+	std::cout << "Int constructor called" << std::endl;
+	this->_fixedPointValue = _intValue << _fractionalBits; // shift on 8 bits (or * 2^8 = * 256)
+}
+
+// конструктор преобразует число с плавающей запятой в фиксированное значение
+Fixed::Fixed(float const _floatValue) {
+	std::cout << "Float constructor called" << std::endl;
+	this->_fixedPointValue = roundf(_floatValue * (1 << _fractionalBits)); // сдвиг на 8 бит (или * 2^8 = * 256)
+}
 
 // создаем новый объект как точную копю существующего объекта
 //		Fixed a; - default constructor
