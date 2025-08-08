@@ -8,8 +8,8 @@
 class Fixed {
 
 	private:
-			int _fixedPointValue;					// целое число для хранения
-			static const int _fractionalBits = 8;	// всегда 8 бит под дробную часть
+			int _fixedPointValue;					// integer to keep
+			static const int _fractionalBits = 8;	// always 8 bits for fractional part
 
 	public:
 			
@@ -23,5 +23,8 @@ class Fixed {
 			float	toFloat( void ) const;			// member function converts the fixed-point value to a floating-point value
 			int		toInt( void ) const;			// member function converts the fixed-point value to an int value
 };
+// an overload of the insertion (<<)
+//		- inserts a floating-point representation of the fixed-point number into the output stream object passed as a parameter
+std::ostream& operator<<(std::ostream& out, const Fixed& fixed);
 
 #endif
