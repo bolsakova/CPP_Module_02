@@ -17,12 +17,14 @@ class Fixed {
 			Fixed(int const _intValue);				// Constructor with parameter (int) - converts a constant integer to the corresponding fixed-point value
 			Fixed(float const _floatValue);			// Constructor with parameter (float) - converts a constant floating-point number to the corresponding fixed-point value
 			Fixed(const Fixed& other);				// Copy constructor - copy the object (always constant reference)
-			Fixed&	operator=(const Fixed& other);	// Assignment operator - assigning (1) copy the data from one already existing object to another one (2) is called when c = b; (с is already created)
 			~Fixed();								// Destructor - destroys the object, frees resources (memory, sockets, files etc.)
 			
 			// Methods
 			float	toFloat( void ) const;			// member function converts the fixed-point value to a floating-point value
 			int		toInt( void ) const;			// member function converts the fixed-point value to an int value
+			
+			// Overload of assignment operator
+			Fixed&	operator=(const Fixed& other);	// Assignment operator - assigning (1) copy the data from one already existing object to another one (2) is called when c = b; (с is already created)
 
 			// Overload of comparison operators
 			bool	operator>(const Fixed& other) const;
@@ -46,7 +48,13 @@ class Fixed {
 			Fixed	operator++(int);
 			Fixed	operator--(int);
 
-			// 
+			// min/max static overloads
+			// min
+			static Fixed&		min(Fixed& a, Fixed& b);
+			static const Fixed&	min(const Fixed& a, const Fixed& b);
+			// max
+			static Fixed&		max(Fixed& a, Fixed& b);
+			static const Fixed&	max(const Fixed& a, const Fixed& b);
 
 };
 // Overload of the insertion (<<)
