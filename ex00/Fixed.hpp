@@ -5,32 +5,21 @@
 #include <string>
 
 class Fixed {
-private:
-	// целое число для хранения
-	int _fixedPointValue;
-	// всегда 8 бит под дробную часть
-	static const int _fractionalBits = 8;
-public:
-	// Default constructor - инициализирует значение в 0
-	Fixed();
-	// Copy constructor - копирует объект (обязательно константная ссылка)
-	//		const - мы не изменяем исходный объект
-	//		& - избегаем лишнего копирования (передача по ссылке)
-	Fixed(const Fixed& other);
-	// Assignment operator - присваивание
-	//		- копирует данные из одного уже существующего объекта в другой уже существующий
-	//		- вызывается при c = b; (когда с уже создан)
-	//		Fixed& - возвращаем ссылку на текущий объект (для цепочек a=b=c)
-	//		operator= - ключевое слово для перегрузки оператора присваивания
-	Fixed& operator=(const Fixed& other);
-	// Destructor - уничтожает объект, освобождает ресурсы (память, сокеты, файлы и т.д.)
-	~Fixed();
-	// геттер - возвращает "сырое" внутренне представление
-	//		возвращает 384 в двоичном виде (не 1.5)
-	int getRawBits(void) const;
-	// сеттер - устанавливает "сырое" внутреннее представление
-	//		сохраняет 384 в двоичном виде (не 1.5)
-	void setRawBits(int const raw);
+
+	private:
+			int _fixedPointValue;					// integer to keep
+			static const int _fractionalBits = 8;	// always 8 bits for fractional part
+
+	public:
+			
+			Fixed();								// Default constructor - initialized value with 0
+			Fixed(const Fixed& other);				// Copy constructor - copy the object (always constant reference)
+			Fixed&	operator=(const Fixed& other);	// Assignment operator - assigning (1) copy the data from one already existing object to another one (2) is called when c = b; (с is already created)
+			~Fixed();								// Destructor - destroys the object, frees resources (memory, sockets, files etc.)
+			
+			
+			int getRawBits(void) const;				// getter - returns "raw" fixed-point representation
+			void setRawBits(int const raw);			// setter - sets "raw" fixed-point representation
 };
 
 #endif
